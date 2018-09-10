@@ -28,6 +28,7 @@ public class SimulationSequential{
                     y = 0;
                 }
             }
+            float average = 0;
             int iterations = Integer.valueOf(br.readLine());
             for(int i = 0; i < iterations; i++){
                 lineArr = br.readLine().split(" ");
@@ -46,15 +47,11 @@ public class SimulationSequential{
                             }
                             else{
                                 sum = sum + flArr[a][b];
-                                System.out.print(flArr[a][b]+" ");
+                                //System.out.print(flArr[a][b]+" ");
                             }
                         }
                     }
-
-                    System.out.println();
-
                 }
-                System.out.println();
                 System.out.println(sum);
             }
             //System.out.println(lineArr[0]);
