@@ -1,12 +1,15 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 
 public class SimulationSequential{
     public static void main(String[] args){
         String input_filename = args[0];
         //String output_filename = args[1];
         BufferedReader br = null;
+        BufferedWriter bw = null;
         float[][] flArr = null;
         int x_size = 0;
         int y_size = 0;
@@ -55,23 +58,26 @@ public class SimulationSequential{
                     }
                 }
                 sumArr[i] = sum;
-                //System.out.println(sum);
             }
+            String output_filename = args[1];
+            bw = new BufferedWriter(new FileWriter(output_filename));
             float sum = 0;
             for(float val : sumArr){
                 sum = sum + val;
             }
             average = sum/iterations;
-            System.out.println(average);
-            System.out.println(iterations);
+            bw.write(Float.toString(average) + "\n");
+            bw.write(Integer.toString(iterations) + "\n");
             for(float val : sumArr){
-                System.out.println(val);
+                bw.write(Float.toString(val) + "\n");
             }
-            //System.out.println(lineArr[0]);
-            //System.out.println("Done");
+            br.close();
+            bw.close();
         }
         catch(IOException e){
             e.printStackTrace();
         }
+
+
     }
 }
