@@ -33,7 +33,7 @@ public class SimulationSequential{
             }
 
             int iterations = Integer.valueOf(br.readLine());
-            float average = 0;
+            double average = 0;
             float[] sumArr = new float[iterations];
             for(int i = 0; i < iterations; i++){
                 lineArr = br.readLine().split(" ");
@@ -61,12 +61,12 @@ public class SimulationSequential{
             }
             String output_filename = args[1];
             bw = new BufferedWriter(new FileWriter(output_filename));
-            float sum = 0;
+            double sum = 0;
             for(float val : sumArr){
                 sum = sum + val;
             }
             average = sum/iterations;
-            bw.write(Float.toString(average) + "\n");
+            bw.write(Double.toString(average) + "\n");
             bw.write(Integer.toString(iterations) + "\n");
             for(float val : sumArr){
                 bw.write(Float.toString(val) + "\n");
