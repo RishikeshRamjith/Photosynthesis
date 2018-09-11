@@ -52,7 +52,7 @@ public class SimulationParallel{
             int iterations = Integer.valueOf(br.readLine());
             double average = 0;
             Double[] sumArr = new Double[iterations];
-            //float[] auxArr = null;
+            tick();
             for(int i = 0; i < iterations; i++){
                 lineArr = br.readLine().split(" ");
                 int x_coord = Integer.valueOf(lineArr[0]);
@@ -74,14 +74,14 @@ public class SimulationParallel{
                             }
                         }
                     }
-                    tick();
+
                     sum = sum(auxArray);
-                    float time = tock();
-                    //System.out.println(sum);
-                    System.out.println(time + "seconds");
+
                 }
                 sumArr[i] = sum;
             }
+            float time = tock();
+            System.out.println(time + "seconds");
             String output_filename = args[1];
             bw = new BufferedWriter(new FileWriter(output_filename));
             Double sum = 0.0;

@@ -5,9 +5,18 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 
 public class SimulationSequential{
+
+    static long startTime = 0;
+    private static void tick(){
+        startTime = System.currentTimeMillis();
+    }
+    private static float tock(){
+        return (System.currentTimeMillis() - startTime) / 1000.0f;
+    }
+
     public static void main(String[] args){
+
         String input_filename = args[0];
-        //String output_filename = args[1];
         BufferedReader br = null;
         BufferedWriter bw = null;
         float[][] flArr = null;
@@ -35,6 +44,7 @@ public class SimulationSequential{
             int iterations = Integer.valueOf(br.readLine());
             double average = 0;
             float[] sumArr = new float[iterations];
+            tick();
             for(int i = 0; i < iterations; i++){
                 lineArr = br.readLine().split(" ");
                 int x_coord = Integer.valueOf(lineArr[0]);
@@ -59,6 +69,8 @@ public class SimulationSequential{
                 }
                 sumArr[i] = sum;
             }
+            float time = tock();
+            System.out.println(time + "seconds");
             String output_filename = args[1];
             bw = new BufferedWriter(new FileWriter(output_filename));
             double sum = 0;
