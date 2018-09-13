@@ -19,14 +19,14 @@ public class SimulationParallel{
 	}
 	static final ForkJoinPool pool = new ForkJoinPool();
 	static Double sum(ArrayList<Double> arr){
-	  return pool.invoke(new SunCalculation(arr,0,arr.size()));
+	  return pool.invoke(new SunCalculation(arr, 0, arr.size()));
 	}
 
     public static void main(String[] args){
         String input_filename = args[0];
         BufferedReader br = null;
         BufferedWriter bw = null;
-        double[][] flArr = null;
+        Double[][] flArr = null;
         int x_size = 0;
         int y_size = 0;
         try{
@@ -34,7 +34,7 @@ public class SimulationParallel{
             String[] lineArr = br.readLine().split(" ");
             x_size = Integer.valueOf(lineArr[0]);
             y_size = Integer.valueOf(lineArr[1]);
-            flArr = new double[x_size][y_size];
+            flArr = new Double[x_size][y_size];
 
             lineArr = br.readLine().split(" "); //Array of values as Strings
             int x = 0;
@@ -52,16 +52,18 @@ public class SimulationParallel{
             int iterations = Integer.valueOf(br.readLine());
             double average = 0;
             Double[] sumOfEachTreeArr = new Double[iterations];
-            tick();
+            //tick();
+
+            ArrayList<ArrayList<Double>> ArrayTreeArray = new ArrayList<ArrayList<Double>>();
             for(int i = 0; i < iterations; i++){
+                ArrayList<Double> treeArray = new ArrayList<Double>();
                 lineArr = br.readLine().split(" ");
                 int x_coord = Integer.valueOf(lineArr[0]);
                 int y_coord = Integer.valueOf(lineArr[1]);
                 int extent = Integer.valueOf(lineArr[2]);
-                Double sum = 0.0;
-                ArrayList<Double> auxArray = new ArrayList<Double>();
+                //Double sum = 0.0;
                 for(int a = x_coord; a < x_coord+extent; a++){
-                    sum = 0.0;
+                    //sum = 0.0;
                     if(a == x_size){
                         break;
                     }
@@ -71,27 +73,36 @@ public class SimulationParallel{
                                 break;
                             }
                             else{
-                                auxArray.add(flArr[a][b]);
+                                treeArray.add(flArr[a][b]);
+                                //sum = sum + sum(auxArray, y_coord, y_coord+extent);
+                                //auxArray.add(flArr[a][b]);
                             }
                         }
-                        sum = sum + sum(auxArray);
+
                     }
-                    //sum = sum(auxArray);
                 }
-                sumOfEachTreeArr[i] = sum;
+                //sumOfEachTreeArr[i] = sum;
+                ArrayTreeArray.add(treeArray);
+            }
+
+
+            ArrayList<Double> sumArr = new ArrayList<Double>();
+            tick();
+            for(ArrayList<Double> tree : ArrayTreeArray){
+                sumArr.add(sum(tree));
             }
             float time = tock();
             System.out.println(time + "seconds");
             String output_filename = args[1];
             bw = new BufferedWriter(new FileWriter(output_filename));
             Double sum = 0.0;
-            for(Double val : sumOfEachTreeArr){
+            for(Double val : sumArr){
                 sum += val;
             }
             average = sum/iterations;
             bw.write(Double.toString(average) +"\n");
             bw.write(Integer.toString(iterations) + "\n");
-            for(Double val : sumOfEachTreeArr){
+            for(Double val : sumArr){
                 bw.write(Double.toString(val) + "\n");
             }
             br.close();
