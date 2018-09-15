@@ -48,8 +48,8 @@ public class SimulationParallel{
                     y = 0;
                 }
             }
-
             int iterations = Integer.valueOf(br.readLine());
+            iterations = Integer.valueOf(args[2]);
             double average = 0;
             Double[] sumOfEachTreeArr = new Double[iterations];
             ArrayList<ArrayList<Double>> ArrayTreeArray = new ArrayList<ArrayList<Double>>();
@@ -81,18 +81,12 @@ public class SimulationParallel{
                 ArrayTreeArray.add(treeArray);
             }
 
-
-            //ArrayList<Double> sumArr = new ArrayList<Double>();
             tick();
             Double sum = sum(ArrayTreeArray);
             float time = tock();
-            System.out.println(time + "seconds");
+            System.out.println(time + " seconds");
             String output_filename = args[1];
             bw = new BufferedWriter(new FileWriter(output_filename));
-            //Double sum = 0.0;
-            //for(Double val : sumOfEachTreeArr){
-                //sum += val;
-            //}
             average = sum/iterations;
             bw.write(Double.toString(average) +"\n");
             bw.write(Integer.toString(iterations) + "\n");

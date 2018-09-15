@@ -42,6 +42,7 @@ public class SimulationSequential{
             }
 
             int iterations = Integer.valueOf(br.readLine());
+            iterations = Integer.valueOf(args[2]);
             double average = 0;
             float[] sumArr = new float[iterations];
             tick();
