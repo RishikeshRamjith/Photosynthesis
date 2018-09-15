@@ -18,7 +18,7 @@ public class SimulationParallel{
 		return (System.currentTimeMillis() - startTime) / 1000.0f;
 	}
 	static final ForkJoinPool pool = new ForkJoinPool();
-	static Double sum(ArrayList<Double> arr){
+	static Double sum(ArrayList<ArrayList<Double>> arr){
 	  return pool.invoke(new SunCalculation(arr, 0, arr.size()));
 	}
 
@@ -88,9 +88,10 @@ public class SimulationParallel{
 
             ArrayList<Double> sumArr = new ArrayList<Double>();
             tick();
-            for(ArrayList<Double> tree : ArrayTreeArray){
-                sumArr.add(sum(tree));
-            }
+            Double sumiuw = sum(ArrayTreeArray);
+            //for(ArrayList<Double> tree : ArrayTreeArray){
+                //sumArr.add(sum(tree));
+            //}
             float time = tock();
             System.out.println(time + "seconds");
             String output_filename = args[1];

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 public class SunCalculation extends RecursiveTask<Double>{
     int lo;
     int hi;
-    ArrayList<Double> arr;
-    static int SEQUENTIAL_CUTOFF = 1000;
+    ArrayList<ArrayList<Double>> arr;
+    static int SEQUENTIAL_CUTOFF = 900000000;
     double ans = 0;
 
-    public SunCalculation(ArrayList<Double> a, int l, int h){
+    public SunCalculation(ArrayList<ArrayList<Double>> a, int l, int h){
         lo = l;
         hi = h;
         arr = a;
@@ -18,8 +18,10 @@ public class SunCalculation extends RecursiveTask<Double>{
     protected Double compute(){
         if((hi - lo) < SEQUENTIAL_CUTOFF){
             Double ans = 0.0;
-            for(Double val : arr){
-                ans += val;
+            for(ArrayList<Double> tree : arr){
+                for(Double val : tree){
+                    ans += val;
+                }
             }
             return ans;
         }
