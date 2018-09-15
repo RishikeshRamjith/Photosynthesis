@@ -5,7 +5,7 @@ public class SunCalculation extends RecursiveTask<Double>{
     int lo;
     int hi;
     ArrayList<ArrayList<Double>> arr;
-    static int SEQUENTIAL_CUTOFF = 900000000;
+    static int SEQUENTIAL_CUTOFF = 420;
     double ans = 0;
 
     public SunCalculation(ArrayList<ArrayList<Double>> a, int l, int h){
