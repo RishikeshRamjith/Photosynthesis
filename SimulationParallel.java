@@ -52,8 +52,6 @@ public class SimulationParallel{
             int iterations = Integer.valueOf(br.readLine());
             double average = 0;
             Double[] sumOfEachTreeArr = new Double[iterations];
-            //tick();
-
             ArrayList<ArrayList<Double>> ArrayTreeArray = new ArrayList<ArrayList<Double>>();
             for(int i = 0; i < iterations; i++){
                 ArrayList<Double> treeArray = new ArrayList<Double>();
@@ -61,9 +59,8 @@ public class SimulationParallel{
                 int x_coord = Integer.valueOf(lineArr[0]);
                 int y_coord = Integer.valueOf(lineArr[1]);
                 int extent = Integer.valueOf(lineArr[2]);
-                //Double sum = 0.0;
+                Double Treesum = 0.0;
                 for(int a = x_coord; a < x_coord+extent; a++){
-                    //sum = 0.0;
                     if(a == x_size){
                         break;
                     }
@@ -74,36 +71,32 @@ public class SimulationParallel{
                             }
                             else{
                                 treeArray.add(flArr[a][b]);
-                                //sum = sum + sum(auxArray, y_coord, y_coord+extent);
-                                //auxArray.add(flArr[a][b]);
+                                Treesum = Treesum + flArr[a][b];
                             }
                         }
 
                     }
                 }
-                //sumOfEachTreeArr[i] = sum;
+                sumOfEachTreeArr[i] = Treesum;
                 ArrayTreeArray.add(treeArray);
             }
 
 
-            ArrayList<Double> sumArr = new ArrayList<Double>();
+            //ArrayList<Double> sumArr = new ArrayList<Double>();
             tick();
-            Double sumiuw = sum(ArrayTreeArray);
-            //for(ArrayList<Double> tree : ArrayTreeArray){
-                //sumArr.add(sum(tree));
-            //}
+            Double sum = sum(ArrayTreeArray);
             float time = tock();
             System.out.println(time + "seconds");
             String output_filename = args[1];
             bw = new BufferedWriter(new FileWriter(output_filename));
-            Double sum = 0.0;
-            for(Double val : sumArr){
-                sum += val;
-            }
+            //Double sum = 0.0;
+            //for(Double val : sumOfEachTreeArr){
+                //sum += val;
+            //}
             average = sum/iterations;
             bw.write(Double.toString(average) +"\n");
             bw.write(Integer.toString(iterations) + "\n");
-            for(Double val : sumArr){
+            for(Double val : sumOfEachTreeArr){
                 bw.write(Double.toString(val) + "\n");
             }
             br.close();
