@@ -11,11 +11,11 @@ for i in range(10000, 1000000, 10000):
     print("\n")
 
 #Automated running of parallel program with changing dataset sizes and saving results to TimingsSequential.txt
-for i in range(10000, 1000000, 10000):
-    message = "Data size "+str(i)
+#for i in range(10000, 1000000, 10000):
+    #message = "Data size "+str(i)
     #print(message)
-    os.system("echo "+message+" >> TimingsParallel.txt")
-    argument = "java SimulationSequential sample_input.txt OutputSequential.txt "+str(i)+" >> TimingsSequential.txt"
+    #os.system("echo "+message+" >> TimingsSequential.txt")
+    #argument = "java SimulationSequential sample_input.txt OutputSequential.txt "+str(i)+" >> TimingsSequential.txt"
     #print(argument)
-    os.system(argument)
-    print("\n")
+    #os.system(argument)
+    #print("\n")

@@ -71,7 +71,7 @@ public class SimulationSequential{
                 sumArr[i] = sum;
             }
             float time = tock();
-            System.out.println(time + "seconds");
+            System.out.println(time + " seconds");
             String output_filename = args[1];
             bw = new BufferedWriter(new FileWriter(output_filename));
             double sum = 0;
